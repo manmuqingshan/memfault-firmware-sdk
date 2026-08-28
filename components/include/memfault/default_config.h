@@ -373,6 +373,11 @@ extern "C" {
   #define MEMFAULT_METRICS_CONNECTIVITY_CONNECTED_TIME 0
 #endif
 
+//! Enable the bt_conn session metrics API (see memfault/metrics/ble_session.h)
+#ifndef MEMFAULT_METRICS_BLE_SESSION
+  #define MEMFAULT_METRICS_BLE_SESSION 0
+#endif
+
 //! Enable the battery metrics API
 #ifndef MEMFAULT_METRICS_BATTERY_ENABLE
   #define MEMFAULT_METRICS_BATTERY_ENABLE 0

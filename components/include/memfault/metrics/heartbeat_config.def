@@ -24,6 +24,11 @@ MEMFAULT_METRICS_KEY_DEFINE(connectivity_connected_time_ms, kMemfaultMetricType_
 MEMFAULT_METRICS_KEY_DEFINE(connectivity_expected_time_ms, kMemfaultMetricType_Timer)
 #endif
 
+#if MEMFAULT_METRICS_BLE_SESSION
+MEMFAULT_METRICS_SESSION_KEY_DEFINE(bt_conn)
+MEMFAULT_METRICS_KEY_DEFINE_WITH_SESSION(bt_conn_disconnect_reason_code, kMemfaultMetricType_Unsigned, bt_conn)
+#endif
+
 // Operational hours accumulated since the last heartbeat
 MEMFAULT_METRICS_KEY_DEFINE(operational_hours, kMemfaultMetricType_Unsigned)
 // Operational hours without a crash since the last heartbeat

@@ -6,6 +6,52 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.44.0] - 2026-08-28
+
+This is a minor release, including new features, improvements, and bug fixes
+across several platforms.
+
+### 📈 Added
+
+- General:
+
+  - Added a compile-time check in the FreeRTOS metrics port
+    ([`ports/freertos/src/memfault_metrics_freertos.c`](ports/freertos/src/memfault_metrics_freertos.c))
+    that errors if `configTIMER_TASK_STACK_DEPTH` is less than 256 words. The
+    metrics heartbeat timer callback runs on the FreeRTOS timer daemon task, and
+    a stack that's too small risks overflow. If you're confident your configured
+    stack depth is sufficient, define
+    `MEMFAULT_METRICS_FREERTOS_DISABLE_TIMER_TASK_STACK_DEPTH_CHECK` to silence
+    the check.
+
+- nRF Connect SDK:
+
+  - Add a new Metrics Session helper for tracking Bluetooth connection and
+    disconnect code. Zephyr bluetooth systems will have the session metric
+    automatically captured when Memfault Bluetooth metrics are enabled
+    (`CONFIG_MEMFAULT_METRICS_BLUETOOTH=y`).
+
+### 🐛 Fixed
+
+- Zephyr:
+
+  - Fixed a compatibility issue in the nrf MRAM coredump backend
+    ([`ports/zephyr/common/coredump_storage/memfault_mram_backed_coredump.c`](ports/zephyr/common/coredump_storage/memfault_mram_backed_coredump.c)),
+    due to an upstream change that added a mutex in the `flash_write()` path.
+    The coredump backend now directly writes to MRAM, bypassing the driver,
+    similar to how the RRAM implementation works.
+
+### 🛠️ Changed
+
+- Zephyr:
+
+  - Rename the Memfault SDK's Zephyr library name to a stable name:
+    `memfault-firmware-sdk`. Previously, the name was generated based on the
+    filepath, therefore references could change depending on where the SDK
+    source was in the workspace relative to the project root. Thanks to
+    [@nordicjm](https://github.com/nordicjm) for providing this fix in
+    [#125](https://github.com/memfault/memfault-firmware-sdk/pull/125) 🎉!
+
 ## [1.43.0] - 2026-08-05
 
 This is a minor release, including new features, improvements, and bug fixes

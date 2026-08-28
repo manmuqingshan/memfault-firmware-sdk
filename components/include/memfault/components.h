@@ -52,6 +52,7 @@
 #include "memfault/http/root_certs.h"
 #include "memfault/http/utils.h"
 #include "memfault/metrics/battery.h"
+#include "memfault/metrics/ble_session.h"
 #include "memfault/metrics/connectivity.h"
 #include "memfault/metrics/metrics.h"
 #include "memfault/metrics/platform/battery.h"

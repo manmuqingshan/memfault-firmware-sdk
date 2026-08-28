@@ -23,6 +23,7 @@
 
 #include "memfault/core/debug_log.h"
 #include "memfault/core/platform/core.h"
+#include "memfault/metrics/ble_session.h"
 #include "memfault/metrics/metrics.h"
 #include "memfault/metrics/platform/timer.h"
 #include "memfault/ports/zephyr/version.h"
@@ -205,6 +206,9 @@ static void prv_bt_connected_cb(struct bt_conn *conn, uint8_t err) {
   // Start connected time timer
   MEMFAULT_METRIC_TIMER_START(bt_connected_time_ms);
 
+  // Open a per-connection ble_conn session report
+  memfault_metrics_ble_session_connected();
+
   // Record connection metrics
   prv_record_gatt_mtu(conn);
   prv_record_connection_params(conn);
@@ -240,6 +244,9 @@ static void prv_bt_disconnected_cb(struct bt_conn *conn, uint8_t reason) {
     // connected peer, i.e. if a second peer connects then disconnects, don't
     // stop the timer for the tracked connection.
     MEMFAULT_METRIC_TIMER_STOP(bt_connected_time_ms);
+
+    // Close out the ble_conn session report for this connection
+    memfault_metrics_ble_session_disconnected(reason);
   }
 }
 

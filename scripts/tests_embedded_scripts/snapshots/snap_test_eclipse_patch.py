@@ -379,6 +379,11 @@ snapshots['test_eclipse_project_patcher 1'] = {
 \t\t<locationURI>PARENT-3-PROJECT_LOC/components/metrics/src/memfault_metrics_battery.c</locationURI>
 \t</link>
 \t<link>
+\t\t<name>memfault_components/memfault_metrics_ble_session.c</name>
+\t\t<type>1</type>
+\t\t<locationURI>PARENT-3-PROJECT_LOC/components/metrics/src/memfault_metrics_ble_session.c</locationURI>
+\t</link>
+\t<link>
 \t\t<name>memfault_components/memfault_metrics_connectivity.c</name>
 \t\t<type>1</type>
 \t\t<locationURI>PARENT-3-PROJECT_LOC/components/metrics/src/memfault_metrics_connectivity.c</locationURI>
@@ -877,6 +882,11 @@ snapshots['test_eclipse_project_patcher_nested_port 1'] = {
 \t\t<name>memfault_components/memfault_metrics_battery.c</name>
 \t\t<type>1</type>
 \t\t<locationURI>PARENT-3-PROJECT_LOC/components/metrics/src/memfault_metrics_battery.c</locationURI>
+\t</link>
+\t<link>
+\t\t<name>memfault_components/memfault_metrics_ble_session.c</name>
+\t\t<type>1</type>
+\t\t<locationURI>PARENT-3-PROJECT_LOC/components/metrics/src/memfault_metrics_ble_session.c</locationURI>
 \t</link>
 \t<link>
 \t\t<name>memfault_components/memfault_metrics_connectivity.c</name>
@@ -1412,6 +1422,11 @@ snapshots['test_eclipse_project_patcher_single_dir_port 1'] = {
 \t\t<name>memfault_components/memfault_metrics_battery.c</name>
 \t\t<type>1</type>
 \t\t<locationURI>PARENT-3-PROJECT_LOC/components/metrics/src/memfault_metrics_battery.c</locationURI>
+\t</link>
+\t<link>
+\t\t<name>memfault_components/memfault_metrics_ble_session.c</name>
+\t\t<type>1</type>
+\t\t<locationURI>PARENT-3-PROJECT_LOC/components/metrics/src/memfault_metrics_ble_session.c</locationURI>
 \t</link>
 \t<link>
 \t\t<name>memfault_components/memfault_metrics_connectivity.c</name>

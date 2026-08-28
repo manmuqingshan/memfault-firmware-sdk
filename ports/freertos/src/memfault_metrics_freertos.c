@@ -25,6 +25,18 @@
 #define SEC_TO_FREERTOS_TICKS(period_sec) \
   ((uint64_t)(((uint64_t)period_sec * 1000ULL) / (uint64_t)portTICK_PERIOD_MS))
 
+// The metrics timer callback runs on the FreeRTOS timer daemon task. A stack that's too small
+// risks overflow when the callback runs. Define
+// MEMFAULT_METRICS_FREERTOS_DISABLE_TIMER_TASK_STACK_DEPTH_CHECK to silence this check, e.g. if
+// configTIMER_TASK_STACK_DEPTH is known to be sufficient.
+#ifndef MEMFAULT_METRICS_FREERTOS_DISABLE_TIMER_TASK_STACK_DEPTH_CHECK
+MEMFAULT_STATIC_ASSERT(configTIMER_TASK_STACK_DEPTH >= 256,
+                       "configTIMER_TASK_STACK_DEPTH is too small, risking stack overflow in "
+                       "the timer daemon task. Define "
+                       "MEMFAULT_METRICS_FREERTOS_DISABLE_TIMER_TASK_STACK_DEPTH_CHECK to "
+                       "silence this check.");
+#endif
+
 static MemfaultPlatformTimerCallback *s_metric_timer_cb = NULL;
 static void prv_metric_timer_callback(MEMFAULT_UNUSED TimerHandle_t handle) {
   s_metric_timer_cb();
